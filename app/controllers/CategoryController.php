@@ -38,7 +38,7 @@ class CategoryController extends Controller {
 
     public function showUpdateCategories(Request $request)
     {
-        $title = "Sủa danh mục";
+        $title = "Sửa danh mục";
         $c = $request->getBody();
         $categories = $this->model->getValue()->where('id', '=', $c['id'])->findOne();
         
@@ -71,9 +71,9 @@ class CategoryController extends Controller {
         $result = $this->model->getValue()->where('id', '=', $c['id'])
         ->findOne()->update(['status' => $c['status']]);
         if($result) {
-            setcookie('message', 'Xóa không thành công :((', time() + 3);
-        }else {
             setcookie('message', 'Xóa thành công :))', time() + 3);
+        }else {
+            setcookie('message', 'Xóa không thành công :((', time() + 3);
         }
         header("Location:./list-categories");
         exit;

@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-                        <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+                        <a href="./"><i class="fa fa-home"></i> Home</a>
                         <a href="#"><?= $category->name ?> </a>
                         <span><?= $productDetail->product_name ?> </span>
                     </div>
@@ -118,30 +118,53 @@
                     <div class="product__details__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Description</a>
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Mô tả</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Reviews ( 2 )</a>
+                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Bình luận (<?php print_r($countComment[0]->count); ?>)</a>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <h6>Description</h6>
+                                <h6>Mô tả</h6>
                                 <p><?= $productDetail->description ?> .</p>
                             </div>
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
-                                <h6>Reviews ( 2 )</h6>
-                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed
-                                    quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt loret.
-                                    Neque porro lorem quisquam est, qui dolorem ipsum quia dolor si. Nemo enim ipsam
-                                    voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia ipsu
-                                    consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nulla
-                                consequat massa quis enim.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                                    dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-                                    nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
-                                quis, sem.</p>
+                                <?php if(isset($_SESSION['id'])) { ?>
+                                    <form action="./comment" class="form-comment" method="POST">
+                                        <div class="form-group">
+                                            <input type="hidden" name="id_user" value="<?= $_SESSION['id'] ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            
+                                            <input type="hidden" name="id_product" value="<?= $_GET['id'] ?>">
+                                        </div>
+                                        <div class="form-group__comment">
+                                            <input type="text" name="comment" placeholder="Thêm bình luận.........." class="input-comment">
+                                            <button  type="submit"  style="border: none;background: none;padding-top: 22px;">Bình luận</button>
+                                        </div>
+                                    </form>      
+                                <?php } else {?> 
+                                    <h5 style="text-align:center;">Bạn cần <a href="./login">Đăng nhập</a> để bình luận</h5>
+                                <?php } ?>
+                                <?php foreach($comments as $comment) : ?>
+                                <div class="section-comments__main" style="display: flex;align-items: center;padding: 0 auto;margin: 32px 64px;">
+                                    <div class="info-user">
+                                        <span><?= $comment->username ?></span>
+                                        <p><?= $comment->date ?></p>
+                                    </div>
+                                    <div class="text-comment" style="padding: 0 37px;font-size: 16px;">
+                                    <?= $comment->comment ?>
+                                    <?php if(isset($_SESSION['role']) && $_SESSION['role'] === 1 || isset( $_SESSION['id']) && $comment->userID === $_SESSION['id']) : ?>
+                                    <a href="./delete-comment?id=<?= $comment->commentID ?>&idpro=<?= $_GET['id'] ?>" onclick=" return confirm('Bạn có chắc muốn xóa ?')" style="font-size: 16px; display:inline-block; padding-left:6px;">Xóa</a>
+                                    <?php else: ?>
+                                    <?= ""  ?>
+                                    </div>
+                                    <?php endif;?>
+                                </div>
+                                <?php endforeach;?>
                             </div>
+
                         </div>
                     </div>
                 </div>

@@ -2,11 +2,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Danh sách sản phẩm</h1>
+      <h1>Danh sách thành viên</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Danh sách sản phẩm</li>
+          <li class="breadcrumb-item active">Danh sách thành viên</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -17,37 +17,43 @@
 
           <div class="card">
             <div class="card-body">
-              <?php if(empty($products)) { ?>
+              <?php if(empty($listUsers)) { ?>
                 <div>
                   <h5 style="display: flex;justify-content: center;align-items:center">Không có dữ liệu</h5>
                 </div>
                 <?php }else { ?>
-                <h5 class="card-title">Danh sách sản phẩm</h5>
+                <h5 class="card-title">Danh sách thành viên</h5>
                 <table class="table table-striped">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Tên sản phẩm</th>
-                      <th style="width: 20%">Hình ảnh</th>
-                      <th>Giá</th>
-                      <th>Sale</th>
+                      <th scope="col">Tên thành viên</th>
+                      <th>Email</th>
+                      <th>password</th>
+                      <th>Vai trò</th>
                       <th scope="col" style="text-align: center;">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                      <?php foreach($products as $key => $value): ?>
+                      <?php foreach($listUsers as $key => $value): ?>
                     <tr>
                       <th scope="row"><?= $key + 1 ?></th>
-                      <td><?= $value->product_name ?></td>
+                      <td><?= $value->username ?></td>
+                      <td><?= $value->email ?></td>
+                      <td><?= $value->password ?></td>
                       <td>
-                          <img src="./assets/img/<?= $value->image ?>" alt="" style="width:60%">
+                        <?php 
+                          if($value->role === 1) {
+                            echo "Admin";
+                          }else {
+                            echo "Khách hàng";
+                          }
+                        ?>
                       </td>
-                      <td><?= number_format( $value->price, 0, '', ',') ?></td>
-                      <td><?= number_format( $value->sale, 0, '', ',') ?></td>
                       <td style="text-align: center;">
-                          <a href="./update-products?id=<?= $value->id ?>" class="btn btn-primary rounded-pill">Update</a>
+                          <a href="./update-users?id=<?= $value->id ?>" class="btn btn-primary rounded-pill">Update</a>
                           <a 
-                            href="./delete-products?id=<?= $value->id ?>" 
+                            href="./delete-users?id=<?= $value->id ?>" 
                             class="btn btn-warning rounded-pill"
                             onclick="return confirm('Bạn có chắc muốn xóa ?')"
                             >
@@ -59,7 +65,6 @@
                   </tbody>
                 </table>
               <?php } ?>
-              <!-- Table with stripped rows -->
 
             </div>
           </div>

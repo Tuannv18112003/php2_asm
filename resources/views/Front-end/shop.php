@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="sidebar__filter">
+                        <!-- <div class="sidebar__filter">
                             <div class="section-title">
                                 <h4>Shop by price</h4>
                             </div>
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <a href="#">Filter</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-9">

@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/style01.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/comment.css" type="text/css">
     <?php if(isset($_COOKIE['message'])): ?>
         <script>
             alert('<?= $_COOKIE['message'] ?>');

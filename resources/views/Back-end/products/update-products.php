@@ -68,7 +68,6 @@
                   <label class="col-sm-2 col-form-label">Loại sản phẩm</label>
                   <div class="col-sm-10">
                     <select class="form-select" aria-label="Default select example" name="cate_id">
-                      <option>Chọn danh mục sản phẩm</option>
                       <?php foreach($categories as $val): ?>
                       <option value="<?= $val->id ?>" <?= $val->id === $product->cate_id ? 'selected' : '' ?>>
                         <?= $val->name ?> 

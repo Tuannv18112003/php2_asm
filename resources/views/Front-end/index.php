@@ -27,7 +27,7 @@
                         <div class="categories__item set-bg" data-setbg="assets/img/shoes2.jpg">
                             <div class="categories__text">
                                 <h4>GIÀY DÉP</h4>
-                                <a href="./shop?id=4">Shop now</a>
+                                <a href="./shop?id=2">Shop now</a>
                             </div>
                         </div>
                     </div>

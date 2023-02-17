@@ -47,6 +47,11 @@ class BaseModel {
         return $this;
     }
 
+    public function getCountCols() {
+        $this->sqlBuilder = "SELECT COUNT(*) as count FROM $this->tableName";
+        return $this;
+    }
+
     public function insert($data = []) 
     {
         $this->sqlBuilder = "INSERT INTO $this->tableName(";
@@ -112,7 +117,7 @@ class BaseModel {
 
     public function orderBy($col, $sql)
     {
-        $this->sqlBuilder .= " ORDER BY `$col` $sql";
+        $this->sqlBuilder .= " ORDER BY $col $sql";
         return $this;
     }
 
@@ -135,6 +140,16 @@ class BaseModel {
         $id2 = $table2[1];
         $this->sqlBuilder .= " JOIN `$tableName2` ON $this->tableName.$id1 = `$tableName2`.`$id2`"; 
         // var_dump($this->sqlBuilder);
+        return $this;
+    }
+
+    public function andJoinTable($table = []) {
+        extract($table);
+        $tableName1 = $table1[0];
+        $tableName2 = $table2[0];
+        $id1 = $table1[1];
+        $id2 = $table2[1];
+        $this->sqlBuilder .= " JOIN `$tableName1` ON $tableName1.$id1 = `$tableName2`.`$id2`"; 
         return $this;
     }
 

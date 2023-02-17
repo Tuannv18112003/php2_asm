@@ -22,6 +22,8 @@ $router::get('/', [HomeController::class, 'index']);
 $router::get('/shop', [HomeController::class, 'shop']);
 $router::get('/product-details', [HomeController::class, 'productDetails']);
 $router::get('/search', [HomeController::class, 'search']);
+$router::post('/comment', [HomeController::class, 'comment']);
+$router::get('/delete-comment', [HomeController::class, 'deleteComment']);
 
 
 
@@ -59,6 +61,9 @@ $router::get('/list-users', [UserController::class, 'listUsers']);
 $router::get('/add-users', [UserController::class, 'createUsers']);
 $router::post('/add-users', [UserController::class, 'storeUsers']);
 $router::get('/list-users', [UserController::class, 'listUsers']);
+$router::get('/update-users', [UserController::class, 'showUpdateUsers']);
+$router::post('/update-users', [UserController::class, 'updateUsers']);
+$router::get('/delete-users', [UserController::class, 'deleteUsers']);
 
 
 $router->resolve();
