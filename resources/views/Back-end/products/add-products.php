@@ -31,7 +31,8 @@
                 <div class="row mb-3">
                   <label for="inputNumber" class="col-sm-2 col-form-label">Hình ảnh</label>
                   <div class="col-sm-10">
-                    <input class="form-control" type="file" id="formFile" required name="image">
+                    <input class="form-control" type="file" onchange="previewFile()" id="formFile" required name="image">
+                    <img src="" height="200" alt="Image preview" class="img-preview" />
                   </div>
                 </div>
 

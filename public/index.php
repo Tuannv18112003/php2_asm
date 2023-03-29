@@ -5,6 +5,7 @@ use App\Controllers\CategoryController;
 use App\Controllers\HomeController;
 use App\Controllers\ProductController;
 use App\Controllers\UserController;
+use App\Controllers\CartsController;
 use App\Models\ProductModel;
 use App\Router;
 
@@ -33,6 +34,13 @@ $router::post('/login', [UserController::class, 'loginUser']);
 $router::get('/register', [UserController::class, 'register']);
 $router::post('/register', [UserController::class, 'createUser']);
 $router::get('/logout', [UserController::class, 'logout']);
+
+
+// shop cart 
+$router::get('/shop-carts', [CartsController::class, 'viewCarts']);
+$router::post('/shop-carts', [CartsController::class, 'addToCart']);
+$router::get('/remove-cart', [CartsController::class, 'removeCart']);
+
 
 
 

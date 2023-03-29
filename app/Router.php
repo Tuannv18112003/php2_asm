@@ -40,6 +40,7 @@ class Router
         $path = $this->getPath();
         $method = $this->getMethod();
         $callback = false;
+        
 
         if (isset(static::$routes[$method][$path])) {
             $callback = static::$routes[$method][$path];

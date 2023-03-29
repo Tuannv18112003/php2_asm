@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -12,8 +11,7 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
@@ -25,7 +23,7 @@
     <link rel="stylesheet" href="assets/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/style01.css" type="text/css">
     <link rel="stylesheet" href="assets/css/comment.css" type="text/css">
-    <?php if(isset($_COOKIE['message'])): ?>
+    <?php if (isset($_COOKIE['message'])) : ?>
         <script>
             alert('<?= $_COOKIE['message'] ?>');
         </script>
@@ -45,11 +43,11 @@
         <ul class="offcanvas__widget">
             <li><span class="icon_search search-switch"></span></li>
             <li><a href="#"><span class="icon_heart_alt"></span>
-                <div class="tip">2</div>
-            </a></li>
+                    <div class="tip">2</div>
+                </a></li>
             <li><a href="#"><span class="icon_bag_alt"></span>
-                <div class="tip">2</div>
-            </a></li>
+                    <div class="tip">2</div>
+                </a></li>
         </ul>
         <div class="offcanvas__logo">
             <a href="./"><img src="img/logo.png" alt=""></a>
@@ -74,16 +72,16 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="./">Trang chủ</a></li>
-                            <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 1):  ?> 
+                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 1) :  ?>
                                 <li><a href="./admin">Admin</a></li>
                             <?php endif; ?>
-                            <?php if(isset($_SESSION['id'])) {?>
+                            <?php if (isset($_SESSION['id'])) { ?>
                                 <li><a href="./logout">Đăng xuất</a></li>
-                            <?php }else {?> 
+                            <?php } else { ?>
                                 <li><a href="./login">Đăng nhập</a></li>
                             <?php } ?>
-                                
-            
+
+
                         </ul>
                     </nav>
                 </div>
@@ -91,10 +89,25 @@
                     <div class="header__right">
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>
-                            <li><a href="#"><span class="icon_bag_alt"></span>
-                                <div class="tip">2</div>
-                            </a></li>
-                            <?php if(!empty($_SESSION['username'])) { ?> 
+                            <li><a href="./shop-carts"><span class="icon_bag_alt"></span>
+                                    <div class="tip">
+                                        <?php
+                                            $count = 0;
+                                            if(isset($_SESSION['carts'])) {
+                                                foreach($_SESSION['carts'] as $key => $val) {
+                                                    $count++;
+                                                }
+                                            }else {
+                                                $_SESSION['carts'] = array();
+                                                $count = 0;
+                                                session_unset();
+                                            }
+
+                                            echo $count;
+                                        ?>
+                                    </div>
+                                </a></li>
+                            <?php if (!empty($_SESSION['username'])) { ?>
                                 <li>
                                     <?= 'Xin chào, ' . $_SESSION['username'] ?>
                                 </li>

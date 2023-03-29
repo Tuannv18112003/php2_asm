@@ -22,6 +22,23 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    function previewFile() {
+      const preview = document.querySelector('.img-preview');
+      console.log(preview);
+      const file = document.querySelector('input[type=file]').files[0];
+      const reader = new FileReader();
+
+      reader.addEventListener("load", () => {
+        // convert image file to base64 string
+        preview.src = reader.result;
+      }, false);
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
 
 </body>
 

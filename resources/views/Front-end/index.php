@@ -1,12 +1,11 @@
 <?php include_once "../resources/views/Front-end/partials/header.php" ?>
-    <!-- Header Section End -->
-    <!-- Categories Section Begin -->
-    <section class="categories">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6 p-0">
-                    <div class="categories__item categories__large__item set-bg"
-                    data-setbg="assets/img/product1.jpg">
+<!-- Header Section End -->
+<!-- Categories Section Begin -->
+<section class="categories">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 p-0">
+                <div class="categories__item categories__large__item set-bg" data-setbg="assets/img/product1.jpg">
                     <div class="categories__text">
                         <h1>Quần áo</h1>
                         <a href="./shop?id=1">Shop now</a>
@@ -40,7 +39,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                        <div class="categories__item set-bg" data-setbg="assets/img/blog-8.jpg">
+                        <div class="categories__item set-bg" data-setbg="assets/img/product-4.jpg">
                             <div class="categories__text">
                                 <h4>PHỤ KIỆN</h4>
                                 <a href="./shop?id=6">Shop now</a>
@@ -65,27 +64,39 @@
             </div>
         </div>
         <div class="row property__gallery">
-            <?php foreach ($productsNew as $product): ?>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix women">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="assets/img/<?= $product->image ?>">
-                        <div class="label new">New</div>
-                        <ul class="product__hover">
-                            <li><a href="img/product/product-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                            <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                            <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="./product-details?id=<?= $product->id ?>"><?= $product->product_name ?></a></h6>
-                        <div class="product__price">
-                            <?=  number_format( $product->price - $product->sale , 0, '', ',') ?>
-                            <span><?= $product->sale > 0 ? number_format( $product->price, 0, '', ',') : '' ?></span>
+            <?php foreach ($productsNew as $product) : ?>
+                <div class="col-lg-3 col-md-4 col-sm-6 mix women">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="assets/img/<?= $product->image ?>">
+                            <div class="label new">New</div>
+                            <ul class="product__hover">
+                                <li><a href="img/product/product-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li>
+                                    <form action="./shop-carts" method="POST">
+                                        <input type="text" name="id" id="" hidden value="<?= $product->id ?>">
+                                        <input type="text" name="product_name" id="" hidden value="<?= $product->product_name ?>">
+                                        <input type="text" name="image" id="" hidden value="<?= $product->image ?>">
+                                        <input type="text" name="price" id="" hidden value="<?= $product->price ?>">
+                                        <input type="text" name="sale" id="" hidden value="<?= $product->sale ?>">
+                                        <button type="submit" class="border-0 p-0 rounded-circle">
+                                            <a href=""><span class="icon_bag_alt"></span></a>
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="./product-details?id=<?= $product->id ?>"><?= $product->product_name ?></a></h6>
+                            <div class="product__price">
+                                <?= number_format($product->price - $product->sale, 0, '', ',') ?>
+                                <span><?= $product->sale > 0 ? number_format($product->price, 0, '', ',') : '' ?></span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <?php endforeach;?>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
@@ -136,7 +147,7 @@
             </div>
         </div>
         <div class="row property__gallery">
-            <?php foreach ($productsTrend as $product): ?>
+            <?php foreach ($productsTrend as $product) : ?>
                 <div class="col-lg-3 col-md-4 col-sm-6 mix women">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="assets/img/<?= $product->image ?>">
@@ -149,13 +160,13 @@
                         <div class="product__item__text">
                             <h6><a href="./product-details?id=<?= $product->id ?>"><?= $product->product_name ?></a></h6>
                             <div class="product__price">
-                                <?=  number_format( $product->price - $product->sale , 0, '', ',') ?>
-                                <span><?= $product->sale > 0 ? number_format( $product->price, 0, '', ',') : '' ?></span>
+                                <?= number_format($product->price - $product->sale, 0, '', ',') ?>
+                                <span><?= $product->sale > 0 ? number_format($product->price, 0, '', ',') : '' ?></span>
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php endforeach;?>
+            <?php endforeach; ?>
             <div class="col-lg-12 text-center">
                 <div class="pagination__option">
                     <a href="#">1</a>
@@ -303,5 +314,6 @@
         </div>
     </div>
 </div>
+
 <!-- Instagram End -->
 <?php include_once "../resources/views/Front-end/partials/footer.php" ?>
